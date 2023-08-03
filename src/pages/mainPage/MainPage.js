@@ -1,22 +1,41 @@
 import React from 'react';
-import {Container} from "@mui/material";
+
 import classes from "./MainPage.module.css";
-import {Instagram} from "@mui/icons-material";
-import {Link} from "react-router-dom"
+
+import { useTranslation } from 'react-i18next';
+
+import Footer from "../../components/footer/Footer"
+import HeaderPage from '../../components/headerPage/HeaderPage';
+import SignUpModal from '../../components/signUp/SignUpModal';
+import { useSelector } from 'react-redux';
+import SignHeader from '../../components/headerPage/SignHeader';
 
 function MainPage(props) {
-    return (
-        <div>
-            <div>
-                <p className={classes.text_one}>hello world</p>
-                <form>
-                    <input type="text"/>
-                    <input type="date"/>
-                    <button className={classes.btn_form}>click</button>
-                </form>
+    // const {t, i18n} = useTranslation()
 
-            </div>
-        </div>
+    // const changeLanguage = (language) => {
+    //     i18n.changeLanguage(language)
+    //   }
+      const {logInUser} = useSelector(state => state.authReducer)
+    return (
+        <>
+        {logInUser
+        ?
+        <HeaderPage/>
+        
+        :
+        <SignHeader/>
+        
+        }
+            {/* <Header/>  */}
+            {/* <HeaderPage/> */}
+            {/* <SignHeader/> */}
+            <SignUpModal/> 
+            {/* <Footer/> */}
+            
+
+        </>
+        
     );
 }
 
